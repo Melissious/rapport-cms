@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}User profile{% endblock %}
+{% block content2 %}
+<h1>Username {{user.username}}</h1>
+<h1>Email {{user.email}}</h1>
+<h1>Birthday {{user.birthday}}</h1>
+    <a href="{{ url_for('message.send_message', user_id=user.user_id) }}">SEND MESSAGE</a><br />
+    <a href="{{ url_for('message.dialog', user_id=user.user_id) }}">MESSAGE HISTORY</a>
+{% endblock %}

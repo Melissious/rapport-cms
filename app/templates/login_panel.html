@@ -1,0 +1,6 @@
+{% if current_user.is_authenticated %}
+<li><a href="{{url_for('auth.logout')}}">Logout({{current_user.username}})</a></li>
+{% else %}
+<li><a href="{{url_for('auth.registration')}}">Sign up</a></li>
+<li><a href="{{url_for('auth.login')}}">Log in</a></li>
+{% endif %}

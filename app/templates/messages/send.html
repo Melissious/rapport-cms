@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Message to {{other_user['username']}}{% endblock %}
+{% block content2 %}
+<h3>Message to {{other_user['username']}}</h3>
+{{ wtf.quick_form(form) }}
+{% endblock %}

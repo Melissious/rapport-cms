@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dialog {{other_user['username']}}{% endblock %}
+{% block content2 %}
+    {% for mess in messages %}
+        {% if not mess.read %}<b>{% endif %}
+        <a href="{{ url_for('message.message_read',message_id=mess['message_id']) }}">
+        {{mess.other_user.username}}: {{mess.message|truncate(100, True)}} <br />
+        </a>
+        {% if not mess.read %}</b>{% endif %}
+    {% endfor %}
+    <br />
+    <div class="btn-group">
+        <button type="button" class="btn btn-default"><a href="{{ url_for('message.send_message',user_id=message['other_user']['user_id']) }}">Reply</a></button>
+        <button type="button" class="btn btn-default"><a href="{{ url_for('message.messages',message_id=message['message_id']) }}">All messages</a></button>
+    </div>
+
+{% endblock %}
+

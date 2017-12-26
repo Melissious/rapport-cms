@@ -1,0 +1,60 @@
+{% extends "bootstrap/base.html" %}
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+{% block navbar %}
+
+{#http://bootstrap-3.ru/examples/navbar/##}
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ url_for('main.index')}}">Home</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ url_for('main.users')}}">Users</a></li>
+                  <li><a href="{{ url_for('message.messages')}}">Messages</a></li>
+                  <li><a href="{{ url_for('message.new_messages')}}">New messages</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="./">Меню</a></li>
+              {% include 'login_panel.html' %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+
+
+{% endblock %}
+{% block content %}
+{{ super() }}
+<div class="container">
+  {% block flash_messages %}
+    {% for message in get_flashed_messages() %}
+    <div>{{message}}</div>
+    <hr />
+    {% endfor %}
+  {% endblock %}
+  {% block content2 %}
+  {% endblock %}
+</div>
+{% endblock %}

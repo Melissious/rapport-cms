@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Main page{% endblock %}
+{% block content2 %}
+<h1>
+    Hello,
+{% if current_user.is_authenticated %}
+{{current_user.username}}
+{% else %}
+Unknown
+{% endif %}
+    !
+</h1>
+<br />Your browser is {{ user_agent }}
+<br />
+{% for rec in contents %}
+<hr />
+<a href="{{url_for('main.content',id=rec.id)}}">{{rec.name}}</a>
+{% endfor %}
+<br />
+<br />
+<a href="{{url_for('main.content_new')}}">NEW</a>
+<br />
+<br />
+<p>Local date {{moment(current_time).format('LLL')}}</p>
+<p>Local date {{moment(current_time).fromNow(refresh=True)}}</p>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Message{% endblock %}
+{% block content2 %}
+{{ message['other_user']['username'] }} {{ message['send_time'] }}: <br />
+{{ message['message'] }} <br />
+    <br />
+    <div class="btn-group">
+        <button type="button" class="btn btn-default"><a href="{{ url_for('message.send_message',user_id=message['other_user']['user_id']) }}">Reply</a></button>
+        <button type="button" class="btn btn-default"><a href="{{ url_for('message.dialog',user_id=message['other_user']['user_id']) }}">History</a></button>
+        <button type="button" class="btn btn-default"><a href="{{ url_for('message.message_del',message_id=message['message_id']) }}">Delete</a></button>
+    </div>
+
+{% endblock %}
