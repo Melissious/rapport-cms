@@ -1,13 +1,8 @@
+{% import "messages/macros.jinja" as macros %}
 {% extends "base.html" %}
 {% block title %}New messages{% endblock %}
 {% block content2 %}
-{% for mess in messages %}
-    {% if not mess.read %}<b>{% endif %}
-    <a href="{{ url_for('message.message_read',message_id=mess['message_id']) }}">
-    {{mess.other_user.username}}: {{mess.message|truncate(100, True)}} <br />
-    </a>
-    {% if not mess.read %}</b>{% endif %}
-{% endfor %}
+{{macros.message_list(messages)}}
     <br />
     <div class="btn-group">
         <button type="button" class="btn btn-default"><a href="{{ url_for('message.read_all') }}">Mark all as readed</a></button>
